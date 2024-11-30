@@ -1,0 +1,47 @@
+.calculator {
+  display: grid;
+  grid-template-columns: auto;
+  gap: 20px;
+}
+
+.calculator .taxSlip {
+  background: white;
+  padding: 10px;
+  box-shadow: var(--boxShadow);
+}
+.calculator form {
+  background: white;
+  padding: 10px;
+  box-shadow: 0 5px 10px gainsboro;
+}
+.calculator form button {
+  border: 1px solid black;
+  padding: 5px;
+  background: var(--color1);
+}
+.taxSlip h3 {
+  width: fit-content;
+  margin: 0 auto;
+}
+.taxSlip table {
+  /* max-width: 70%; */
+  width: 100%;
+  margin: 0 auto;
+  border-collapse: collapse;
+  /* border: 2px solid black; */
+}
+.taxSlip table tr {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+@media screen and (min-width: 992px) {
+  .calculator {
+    display: grid;
+    grid-template-columns: 65% auto;
+  }
+  .taxSlip table {
+    max-width: 100%;
+    /* width: 100%;  */
+  }
+}

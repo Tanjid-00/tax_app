@@ -1,0 +1,259 @@
+/***** taxFile *****/
+
+.taxFilingForm {
+  box-shadow: var(--boxShadow);
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 50px 20px;
+  background: #ffffff;
+  border-radius: 10px;
+}
+
+.indicatorContainer {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  max-width: 600px;
+  margin: 0 auto;
+  box-shadow: 0 2px 10px gainsboro;
+  padding: 20px 15px;
+  border-radius: 10px;
+}
+
+.indicatorContainer .navButton {
+  display: flex;
+  /* flex-direction: column; */
+  justify-content: center;
+  gap: 5px;
+  align-items: center;
+  border: none;
+  color: var(--paragraph);
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.indicatorContainer .navButton:disabled span {
+  cursor: not-allowed;
+  color: #bfbfbf;
+}
+
+.indicatorContainer .navButton .circle {
+  font-size: 2rem;
+  display: inline-block;
+  text-align: center;
+  color: gray;
+  line-height: 20px;
+}
+
+.indicatorContainer .navButton.active .circle {
+  color: var(--color1);
+}
+
+.indicatorContainer .navButton.active {
+  color: var(--color1);
+}
+.sectionContainer {
+  max-width: 600px;
+  margin: 50px auto;
+}
+
+/***** End taxFile *****/
+
+/***** For all *****/
+
+.detailsForm form,
+.uploadFilesForm form,
+.paymentForm form {
+  display: grid;
+  grid-template-columns: auto;
+  gap: 20px;
+}
+
+.detailsForm form input,
+.uploadFilesForm form input,
+.paymentForm form input,
+.detailsForm select {
+  border-radius: 10px;
+  padding: 15px;
+  width: 100%;
+}
+.uploadFilesForm form textarea {
+  height: 150px;
+  resize: none;
+  overflow-y: auto;
+  border-radius: 10px;
+  padding: 15px;
+  width: 100%;
+}
+.detailsForm form .submitBtn,
+.uploadFilesForm form .submitBtn,
+.paymentForm form .submitBtn {
+  border: none;
+  background: var(--color1);
+  padding: 15px;
+  border-radius: 5px;
+  color: white;
+  font-weight: 700;
+  width: 100%;
+  margin-top: 20px;
+}
+.uploadFilesForm form .fileImg {
+  width: 100px;
+  height: 100px;
+}
+
+/***** End For all *****/
+
+/***** Details section *****/
+
+.detailsForm {
+}
+
+/***** End Details section *****/
+
+/***** Upload File Section *****/
+
+.uploadFilesForm form input[type="file"] {
+  width: 100%;
+}
+
+/* .uploadFilesForm form label label {
+  border: 1px solid gray;
+  border-radius: 10px;
+  padding: 15px;
+  width: 100%;
+} */
+
+.uploadFilesForm .dropdownContainer {
+  box-shadow: 0 1px 5px gainsboro;
+  padding: 10px;
+  border-radius: 10px;
+}
+.uploadFilesForm .dropdownContainer .dropdownContent {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-top: 30px;
+}
+.uploadFilesForm .dropDownBtn {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: 15px 0;
+  border: none;
+  font-weight: 600;
+  color: var(--paragraph);
+}
+
+/***** Preview Page *****/
+
+.previewPage {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #00000075;
+  position: fixed;
+  height: 100vh;
+  width: 100vw;
+  top: 0;
+  left: 0;
+}
+.previewModal {
+  background: white;
+  width: clamp(380px, 70vw, 700px);
+  padding: 0px clamp(10px, 3vw, 50px);
+  height: 500px;
+  border-radius: 5px;
+  box-shadow: 0 0 5px white;
+  overflow-x: hidden;
+  overflow-y: hidden;
+  font-family: "Courier New", Courier, monospace;
+}
+.previewModal div:nth-child(3) {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+}
+.previewModal .submitBtn {
+  border: none;
+  padding: 10px 20px;
+  border-radius: 10px;
+  background: var(--color1);
+  color: white;
+  font-weight: 600;
+  width: fit-content;
+}
+.previewModal div:nth-child(1) {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+.previewModal div:nth-child(1) button {
+  font-size: 2rem;
+  border: none;
+  color: gray;
+}
+.previewModal div h4 {
+  text-align: center;
+  /* align-self: center; */
+}
+.previewModal div:nth-child(2) {
+  height: 370px;
+  overflow-y: auto;
+}
+.detailsTable {
+  border-collapse: collapse;
+  width: 100%;
+}
+.detailsTable tr:nth-child(even) {
+  background: #2493540a;
+}
+.detailsTable tr td:nth-child(1) {
+  white-space: nowrap;
+  vertical-align: top;
+  font-weight: 600;
+  max-width: 35%;
+}
+.detailsTable tr td:nth-child(2) {
+  width: 65%;
+}
+
+.detailsTable td {
+  padding: 5px;
+}
+
+/***** End Preview Page *****/
+
+/***** End Upload File Section *****/
+
+@media screen and (min-width: 768px) {
+  .indicatorContainer {
+    padding: 20px 30px;
+  }
+  .detailsTable tr td:nth-child(2) {
+    padding-left: clamp(5px, 3vw, 20px);
+    /* background: #000; */
+  }
+  /* upload form */
+}
+
+.required {
+  color: red;
+  font-size: 1.5rem;
+}
+.check {
+  /* background: gainsboro; */
+}
+.check label {
+  width: fit-content;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 10px;
+}
+.check label input {
+  outline: none;
+}
