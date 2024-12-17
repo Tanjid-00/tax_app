@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import style from "../../../styles/taxfile.module.css";
 import Details from "./Details";
 import UploadFiles from "./UploadFiles";
@@ -50,7 +50,7 @@ const TaxFile = () => {
     } else if (section === 2) {
       setCompletedSections((prevState) => ({ ...prevState, 2: true }));
       setShowPreview(true);
-      // setData(formData);
+      setData(formData);
     }
   };
   // const handleFormSubmit = () => {

@@ -9,11 +9,44 @@ const db = require("./config/db");
 const app = express();
 require("./config/passport")(passport, db);
 
+// ---------------------------------------------- pdf file upload
+
+const taxRoutes = require("./routes/taxRoutes");
+app.use("/api/tax", taxRoutes);
+
+const fileRoutes = require("./routes/fileRoutes"); // ফাইল রাউট ইমপোর্ট
+app.use("/api/files", fileRoutes); // API রাউট হিসাবে যুক্ত
+
+const multer = require("multer");
+
+// Storage configuration
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, "uploads/"); // ফাইল কোথায় সংরক্ষণ হবে
+  },
+  filename: (req, file, cb) => {
+    const uniqueSuffix = Date.now() + "-" + Math.round(Math.random() * 1e9);
+    cb(null, uniqueSuffix + "-" + file.originalname); // ফাইলের নাম নির্ধারণ
+  },
+});
+
+// Multer instance
+const upload = multer({ storage });
+
+// আপলোড হওয়া ফাইল অ্যাক্সেস করার জন্য uploads ফোল্ডার স্ট্যাটিক ফাইল হিসেবে সার্ভ করুন। এটি server.js এ যুক্ত করুন:
+
+app.use("/uploads", express.static(path.join(__dirname, "uploads")));
+
+//  ---------------------------------------------- pdf file upload end
+
+const usersRoutes = require("./routes/usersRoutes"); // Import the users route
+app.use("/api/users", usersRoutes); // API রুট হিসাবে ব্যবহার
+
 // CORS
 const corsOptions = {
   origin: "http://localhost:3000", // frontend URL
-  methods: "GET,POST",
-  allowedHeaders: "Content-Type,Authorization",
+  methods: ["GET", "POST", "PUT", "DELETE"], // অনুমোদিত মেথড  allowedHeaders: "Content-Type,Authorization",
+  credential: true,
 };
 
 app.use(cors(corsOptions)); // CORS modules

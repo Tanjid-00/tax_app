@@ -70,4 +70,34 @@ router.post("/logout", (req, res) => {
   });
 });
 
+// --------------------------------------- user show, add and delete
+// Get all users
+router.get("/users", (req, res) => {
+  const query = "SELECT userId, userName, email, password FROM users";
+  db.query(query, (err, results) => {
+    if (err) {
+      console.error("Database query failed:", err);
+      return res.status(500).json({ Error: "Failed to fetch users" });
+    }
+    res.status(200).json(results); // Return user data as JSON
+  });
+});
+
+// Delete user by ID
+router.delete("/users/:id", (req, res) => {
+  const userId = req.params.id;
+  const query = "DELETE FROM users WHERE userId = ?";
+
+  db.query(query, [userId], (err, result) => {
+    if (err) {
+      console.error("Error deleting user:", err);
+      return res.status(500).json({ Error: "Failed to delete user" });
+    }
+    if (result.affectedRows === 0) {
+      return res.status(404).json({ Error: "User not found" });
+    }
+    res.status(200).json({ Status: "User deleted successfully" });
+  });
+});
+
 module.exports = router;

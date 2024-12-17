@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React from "react";
+import axios from "axios";
 import style from "../../../styles/taxfile.module.css";
 
 const Preview = ({
@@ -22,14 +23,66 @@ const Preview = ({
 
   userInfo,
 }) => {
-  const { setData, data, setFormData, formData } = userInfo;
+  const { formData } = userInfo;
 
-  const handleSubmit = () => {
-    setData(data);
-    setFormData(formData);
+  // setData, data, setFormData,
+
+  // const handleSubmit = () => {
+  //   setData(data);
+  //   setFormData(formData);
+  //   previewVisibility(false);
+  //   console.table(formData);
+  //   alert("Submission successful");
+  // };
+
+  // send form data by multer
+
+  const handleSubmit = async () => {
+    try {
+      const formDataToSend = new FormData();
+
+      // টেক্সট ডেটা অ্যাড করা
+      formDataToSend.append("details", JSON.stringify(formData.details));
+      formDataToSend.append(
+        "uploadFiles",
+        JSON.stringify(formData.uploadFiles)
+      );
+
+      // ফাইল ডেটা অ্যাড করা
+      const { uploadFiles } = formData;
+      if (uploadFiles.bankStatement)
+        formDataToSend.append("bankStatement", uploadFiles.bankStatement);
+      if (uploadFiles.remittance)
+        formDataToSend.append("remittance", uploadFiles.remittance);
+      if (uploadFiles.dpsStatement)
+        formDataToSend.append("dpsStatement", uploadFiles.dpsStatement);
+      if (uploadFiles.fdrStatement)
+        formDataToSend.append("fdrStatement", uploadFiles.fdrStatement);
+      if (uploadFiles.lastTaxFile)
+        formDataToSend.append("lastTaxFile", uploadFiles.lastTaxFile);
+
+      // API রিকোয়েস্ট
+      // নতুন Axios কল (credentials সাপোর্ট সহ)
+      const response = await axios.post(
+        "http://localhost:8080/api/tax/submit",
+        formDataToSend,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data", // ফর্ম ডেটার জন্য সঠিক হেডার
+          },
+          withCredentials: true, // credentials সাপোর্ট যোগ করুন
+        }
+      );
+
+      alert(response.data.message); // সফল সাবমিশন মেসেজ দেখান
+      console.log("Form submitted successfully:", response.data);
+    } catch (error) {
+      console.error("Error during form submission:", error);
+      alert("Please try again.");
+    }
+
+    // প্রিভিউ বন্ধ করা
     previewVisibility(false);
-    console.table(formData);
-    alert("Submission successful");
   };
 
   return (

@@ -1,0 +1,81 @@
+/* .container {
+  padding: 20px;
+  max-width: 800px;
+  margin: 0 auto;
+} */
+
+.heading {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 0 auto;
+  background: white;
+  border: 2px solid #b1b1b1;
+}
+
+.table th,
+.table td {
+  border: 1px solid #ccc;
+  padding: 10px;
+  text-align: left;
+  cursor: pointer;
+}
+
+.table th {
+  background: var(--color2);
+  color: white;
+  text-align: center;
+}
+.table tr td {
+  text-align: center;
+}
+
+.table tr:nth-child(even) {
+  background-color: #2ba67d12;
+}
+
+/* .table tr:hover .index {
+  color: white;
+  background: #009dff18;
+} */
+
+.btnGrp {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  gap: 5px;
+}
+
+.deleteBtn {
+  background-color: white;
+  border: 1px solid gray;
+  cursor: pointer;
+  border-radius: 5px;
+  height: 35px;
+  width: 35px;
+  font-size: 1.5rem;
+}
+.deleteBtn:hover {
+  background: #ff4e4eb3;
+  color: white;
+}
+
+.infoBtn {
+  background-color: white;
+  border: 1px solid gray;
+  cursor: pointer;
+  border-radius: 5px;
+  height: 35px;
+  width: 35px;
+  font-size: 1.5rem;
+}
+
+.infoBtn:hover {
+  background: var(--color2);
+  color: white;
+}
